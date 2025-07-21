@@ -160,7 +160,7 @@ const jumlahBukuSelect = document.getElementById("jumlahBuku");
                 formData.append("buku", JSON.stringify(bukuList));
 
                 // Kirim data ke server
-                const response = await fetch("http://localhost:3000/lapor-donasi", {
+                const response = await fetch("http://13.54.84.123:3000/lapor-donasi", {
                     method: "POST",
                     body: formData,
                 });
