@@ -3,7 +3,7 @@ const daftarBukuDiv = document.getElementById("daftarBuku");
 const form = document.getElementById("donasiForm");
 const statusDiv = document.getElementById("status");
 
-// Tambah input dinamis saat jumlah buku dipilih
+// Buat form dinamis berdasarkan jumlah buku
 jumlahBukuSelect.addEventListener("change", () => {
   daftarBukuDiv.innerHTML = ""; // reset
   const jumlah = parseInt(jumlahBukuSelect.value);
@@ -26,29 +26,41 @@ jumlahBukuSelect.addEventListener("change", () => {
       </select>
 
       <label>Foto Buku:</label>
-      <input type="file" name="foto" accept="image/*" required />
+      <input type="file" name="foto_${i}" accept="image/*" required />
       <hr/>
     `;
     daftarBukuDiv.appendChild(div);
   }
 });
 
-// Handle submit
+// Handle form submit
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  const formData = new FormData(form);
+  const formData = new FormData();
 
   const jumlah = parseInt(jumlahBukuSelect.value);
+  formData.append("jumlah_buku", jumlah);
+
   const bukuList = [];
 
   for (let i = 0; i < jumlah; i++) {
     const judul = form[`judul_${i}`].value;
     const kategori = form[`kategori_${i}`].value;
+    const file = form[`foto_${i}`].files[0];
+
+    if (!judul || !kategori || !file) {
+      statusDiv.innerHTML = `<p style="color:red;">❌ Semua data buku wajib diisi lengkap.</p>`;
+      return;
+    }
+
     bukuList.push({ judul_buku: judul, kategori });
+    formData.append(`foto_${i}`, file);
   }
 
   formData.append("buku", JSON.stringify(bukuList));
+  formData.append("nama", form["nama"].value);
+  formData.append("telepon", form["telepon"].value);
+  formData.append("alamat", form["alamat"].value);
 
   try {
     const response = await fetch("http://localhost:3000/lapor-donasi", {
