@@ -1,12 +1,9 @@
 fetch("http://13.54.84.123:3000/data-donasi")
-    console.log("✅ admin.js loaded")
   .then(res => res.json())
   .then(data => {
-    const tbody = document.getElementById("dataDonasi");
     console.log("✅ Data donasi berhasil didapat:", data);
+    const tbody = document.getElementById("dataDonasi");
 
-
-    // ⭐ PENTING: Clear semua content dulu (termasuk loading state)
     const loadingRow = document.getElementById("loadingRow");
     if (loadingRow) loadingRow.remove();
 
@@ -22,7 +19,6 @@ fetch("http://13.54.84.123:3000/data-donasi")
     } else {
       data.forEach((item, index) => {
         const row = document.createElement("tr");
-        // Add animation delay for each row
         row.style.animationDelay = `${index * 0.1}s`;
         row.className = 'table-row-animate';
 
@@ -46,13 +42,11 @@ fetch("http://13.54.84.123:3000/data-donasi")
         tbody.appendChild(row);
       });
 
-      // Update stats
       updateStats(data);
     }
   })
   .catch(err => {
     console.log("❌ Gagal ambil data:", err);
-    console.error("Gagal fetch data donasi:", err);
     document.getElementById("dataDonasi").innerHTML = `
       <tr class="error-state">
         <td colspan="7">
@@ -62,6 +56,8 @@ fetch("http://13.54.84.123:3000/data-donasi")
       </tr>
     `;
   });
+
+console.log("✅ admin.js loaded");
 
 // Helper functions for styling
 function getCategoryClass(kategori) {
