@@ -93,3 +93,21 @@
             }
           }, 50);
         }
+
+        // Misal ada div loading
+const loadingDiv = document.getElementById("loadingDiv");
+const tableContainer = document.getElementById("tableContainer");
+
+// Show loading
+if (loadingDiv) loadingDiv.style.display = "block";
+if (tableContainer) tableContainer.style.display = "none";
+
+fetch("http://13.54.84.123:3000/data-donasi")
+  .then(res => res.json())
+  .then(data => {
+    // Hide loading, show table
+    if (loadingDiv) loadingDiv.style.display = "none";
+    if (tableContainer) tableContainer.style.display = "block";
+
+    // rest of your code...
+  })
