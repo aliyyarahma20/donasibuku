@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Donasi Buku</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Form Donasi Buku</h1>
+
+  <form id="donasiForm" enctype="multipart/form-data">
+    <label>Nama:</label>
+    <input type="text" name="nama" required />
+
+    <label>Email:</label>
+    <input type="email" name="email" required />
+
+    <label>No Telepon:</label>
+    <input type="text" name="no_telepon" required />
+
+    <label>Alamat Penjemputan:</label>
+    <textarea name="alamat" required></textarea>
+
+    <label>Jumlah Buku:</label>
+    <select id="jumlahBuku" required>
+      <option value="">--Pilih--</option>
+      ${[...Array(10).keys()].map(i => `<option value="${i+1}">${i+1}</option>`).join('')}
+    </select>
+
+    <div id="daftarBuku"></div>
+
+    <button type="submit">Kirim Donasi</button>
+  </form>
+
+  <div id="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

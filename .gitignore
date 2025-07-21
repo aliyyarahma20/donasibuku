@@ -1,0 +1,11 @@
+# Jangan upload file kredensial
+backend/.env
+
+# Jangan upload folder upload-an
+backend/uploads/
+
+# Jangan upload folder hasil install npm
+backend/node_modules/
+
+# Optional: log files
+*.log
