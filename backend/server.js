@@ -47,7 +47,6 @@ app.post('/lapor-donasi', upload.any(), async (req, res) => {
         Key: fileKey,
         Body: file.buffer,
         ContentType: file.mimetype,
-        ACL: 'public-read'
       };
 
       // Upload ke S3
