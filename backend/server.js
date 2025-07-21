@@ -88,3 +88,17 @@ app.post('/lapor-donasi', upload.any(), async (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server berjalan di http://localhost:${PORT}`);
 });
+
+app.get("/data-donasi", (req, res) => {
+  const query = `
+    SELECT d.nama, d.email, d.no_telepon, d.alamat,
+           b.judul_buku, b.kategori, b.foto_url
+    FROM donors d
+    JOIN books b ON d.id = b.donor_id
+    ORDER BY d.id DESC;
+  `;
+  db.query(query, (err, results) => {
+    if (err) return res.status(500).json({ error: "Gagal ambil data: " + err.message });
+    res.json(results);
+  });
+});
