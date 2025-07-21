@@ -17,7 +17,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 // POST endpoint: submit donasi buku
-app.post('/lapor-donasi', upload.array('foto', 10), async (req, res) => {
+app.post('/lapor-donasi', upload.any(), async (req, res) => {
   try {
     const {
       nama,
@@ -42,7 +42,7 @@ app.post('/lapor-donasi', upload.array('foto', 10), async (req, res) => {
         const uploaded = [];
 
         for (let i = 0; i < bukuList.length; i++) {
-          const file = req.files[i];
+          const file = req.files.find(f => f.fieldname === `foto_${i}`);
           const fileExt = path.extname(file.originalname);
           const fileKey = `books/${Date.now()}_${file.originalname}`;
 
