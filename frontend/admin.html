@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Donasi Buku</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="form-title">📚 Dashboard Donasi Buku</h1>
+    <p class="desc">Berikut adalah rekap data pendonasi dan buku-buku yang mereka donasikan</p>
+
+    <div class="form-group">
+      <table class="donasi-table">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Telepon</th>
+            <th>Alamat</th>
+            <th>Judul Buku</th>
+            <th>Kategori</th>
+            <th>Foto</th>
+          </tr>
+        </thead>
+        <tbody id="dataDonasi">
+          <!-- data dari fetch akan ditampilkan di sini -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
