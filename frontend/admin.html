@@ -1,36 +1,85 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard Donasi Buku</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Donasi Buku</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="form-title">📚 Dashboard Donasi Buku</h1>
-    <p class="desc">Berikut adalah rekap data pendonasi dan buku-buku yang mereka donasikan</p>
+    <div class="container">
+        <div class="dashboard-header floating-animation">
+            <h1 class="form-title">📚 Dashboard Donasi Buku</h1>
+            <p class="desc">Kelola dan pantau semua donasi buku yang masuk dengan mudah dan efisien</p>
+        </div>
 
-    <div class="form-group">
-      <table class="donasi-table">
-        <thead>
-          <tr>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Telepon</th>
-            <th>Alamat</th>
-            <th>Judul Buku</th>
-            <th>Kategori</th>
-            <th>Foto</th>
-          </tr>
-        </thead>
-        <tbody id="dataDonasi">
-          <!-- data dari fetch akan ditampilkan di sini -->
-        </tbody>
-      </table>
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number" id="totalDonatur">0</div>
+                <div class="stat-label">Total Donatur</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="stat-number" id="totalBuku">0</div>
+                <div class="stat-label">Total Buku</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="stat-number" id="totalKategori">0</div>
+                <div class="stat-label">Kategori Tersedia</div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h2 class="table-title">
+                    <i class="fas fa-table"></i>
+                    Data Donasi Terkini
+                </h2>
+            </div>
+
+            <div class="search-bar" style="padding: 1.5rem;">
+                <div style="position: relative; display: inline-block;">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Cari berdasarkan nama, email, atau judul buku..." id="searchInput">
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="donasi-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-user"></i> Nama</th>
+                            <th><i class="fas fa-envelope"></i> Email</th>
+                            <th><i class="fas fa-phone"></i> Telepon</th>
+                            <th><i class="fas fa-map-marker-alt"></i> Alamat</th>
+                            <th><i class="fas fa-book-open"></i> Judul Buku</th>
+                            <th><i class="fas fa-tags"></i> Kategori</th>
+                            <th><i class="fas fa-image"></i> Foto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataDonasi">
+                        <tr class="loading">
+                            <td colspan="7">
+                                <i class="fas fa-spinner"></i>
+                                <div>Memuat data donasi...</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <script src="admin.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>
+
+
