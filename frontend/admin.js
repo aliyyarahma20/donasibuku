@@ -1,10 +1,14 @@
 fetch("http://13.54.84.123:3000/data-donasi")
+    console.log("✅ admin.js loaded")
   .then(res => res.json())
   .then(data => {
     const tbody = document.getElementById("dataDonasi");
+    console.log("✅ Data donasi berhasil didapat:", data);
+
 
     // ⭐ PENTING: Clear semua content dulu (termasuk loading state)
-    tbody.innerHTML = '';
+    const loadingRow = document.getElementById("loadingRow");
+    if (loadingRow) loadingRow.remove();
 
     if (data.length === 0) {
       tbody.innerHTML = `
@@ -47,6 +51,7 @@ fetch("http://13.54.84.123:3000/data-donasi")
     }
   })
   .catch(err => {
+    console.log("❌ Gagal ambil data:", err);
     console.error("Gagal fetch data donasi:", err);
     document.getElementById("dataDonasi").innerHTML = `
       <tr class="error-state">
